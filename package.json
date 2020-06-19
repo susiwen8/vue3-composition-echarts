@@ -1,0 +1,21 @@
+{
+  "name": "vue3-echarts",
+  "version": "0.0.1",
+  "description": "Vue3 composition API for ECharts",
+  "main": "index.ts",
+  "scripts": {
+    "build": "rm -rf dist/* && rollup -c"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-beta.15",
+    "echarts": "4.8.0"
+  },
+  "author": "susiwen8",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-typescript": "^4.1.2",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
+  }
+}
