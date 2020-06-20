@@ -1,8 +1,9 @@
-import { onMounted, watch } from 'vue';
+import { onMounted, watch, onUnmounted } from 'vue';
 import echarts from 'echarts';
 
-export function useOption<T extends {option: echarts.EChartOption}>(props: T, el: string) {
-    let chartProxy: echarts.ECharts;
+export function useECharts<T extends {option: echarts.EChartOption}>(props: T, el: string) {
+    let chartProxy: echarts.ECharts | null;
+
     onMounted(() => {
         const chart = echarts.init(document.getElementById(el) as HTMLDivElement);
         chart.setOption(props.option);
@@ -29,13 +30,19 @@ export function useOption<T extends {option: echarts.EChartOption}>(props: T, el
             }
         });
     });
-    watch(() => props.option, (newOption) => {
-        chartProxy.setOption(newOption);
+
+    onUnmounted(() => {
+        chartProxy.dispose();
+        chartProxy = null;
     });
 
     function manipulateChart(property: string, ...args: any[]): any {
-        return chartProxy[property](...args);
+        return chartProxy ? chartProxy[property](...args) : null;
     }
+
+    watch(() => props.option, (newOption) => {
+        manipulateChart('setOption', newOption)
+    });
 
     return {
         manipulateChart

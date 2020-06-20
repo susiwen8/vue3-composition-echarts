@@ -6,7 +6,7 @@
 
     echarts = echarts && Object.prototype.hasOwnProperty.call(echarts, 'default') ? echarts['default'] : echarts;
 
-    function useOption(props, el) {
+    function useECharts(props, el) {
         var chartProxy;
         vue.onMounted(function () {
             var chart = echarts.init(document.getElementById(el));
@@ -28,22 +28,26 @@
                 }
             });
         });
-        vue.watch(function () { return props.option; }, function (newOption) {
-            chartProxy.setOption(newOption);
+        vue.onUnmounted(function () {
+            chartProxy.dispose();
+            chartProxy = null;
         });
         function manipulateChart(property) {
             var args = [];
             for (var _i = 1; _i < arguments.length; _i++) {
                 args[_i - 1] = arguments[_i];
             }
-            return chartProxy[property].apply(chartProxy, args);
+            return chartProxy ? chartProxy[property].apply(chartProxy, args) : null;
         }
+        vue.watch(function () { return props.option; }, function (newOption) {
+            manipulateChart('setOption', newOption);
+        });
         return {
             manipulateChart: manipulateChart
         };
     }
 
-    exports.useOption = useOption;
+    exports.useECharts = useECharts;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

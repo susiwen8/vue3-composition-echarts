@@ -6,7 +6,8 @@
   "module": "dist/vue3-composition-echarts.esm.js",
   "scripts": {
     "build:dev": "rm -rf dist/* && rollup -c",
-    "build:prod": "rm -rf dist/* && NODE_ENV=production rollup -c"
+    "build:prod": "rm -rf dist/* && NODE_ENV=production rollup -c",
+    "cp": "cp -r dist/* ./demo/node_modules/vue3-composition-echarts/dist"
   },
   "dependencies": {
     "vue": "^3.0.0-beta.15",

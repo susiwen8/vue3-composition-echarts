@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "build": "webpack --env.prod"
+  },
+  "dependencies": {
+    "echarts": "4.8.0",
+    "vue": "^3.0.0-beta.15",
+    "vue3-composition-echarts": "0.0.1"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-beta.15",
+    "css-loader": "^3.4.2",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "url-loader": "^4.0.0",
+    "vue-loader": "^16.0.0-alpha.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

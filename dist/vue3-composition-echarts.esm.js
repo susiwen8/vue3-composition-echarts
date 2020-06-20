@@ -1,7 +1,7 @@
-import { onMounted, watch } from 'vue';
+import { onMounted, onUnmounted, watch } from 'vue';
 import echarts from 'echarts';
 
-function useOption(props, el) {
+function useECharts(props, el) {
     var chartProxy;
     onMounted(function () {
         var chart = echarts.init(document.getElementById(el));
@@ -23,19 +23,23 @@ function useOption(props, el) {
             }
         });
     });
-    watch(function () { return props.option; }, function (newOption) {
-        chartProxy.setOption(newOption);
+    onUnmounted(function () {
+        chartProxy.dispose();
+        chartProxy = null;
     });
     function manipulateChart(property) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        return chartProxy[property].apply(chartProxy, args);
+        return chartProxy ? chartProxy[property].apply(chartProxy, args) : null;
     }
+    watch(function () { return props.option; }, function (newOption) {
+        manipulateChart('setOption', newOption);
+    });
     return {
         manipulateChart: manipulateChart
     };
 }
 
-export { useOption };
+export { useECharts };
