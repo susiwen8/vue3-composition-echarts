@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('echarts')) :
     typeof define === 'function' && define.amd ? define(['exports', 'vue', 'echarts'], factory) :
-    (global = global || self, factory(global['vue3-echarts'] = {}, global.vue, global.echarts));
+    (global = global || self, factory(global['vue3-composition-echarts'] = {}, global.vue, global.echarts));
 }(this, (function (exports, vue, echarts) { 'use strict';
 
     echarts = echarts && Object.prototype.hasOwnProperty.call(echarts, 'default') ? echarts['default'] : echarts;
