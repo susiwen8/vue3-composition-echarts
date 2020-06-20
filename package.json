@@ -1,6 +1,6 @@
 {
   "name": "vue3-composition-echarts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vue3 composition API for ECharts",
   "main": "dist/vue3-composition-echarts.esm.js",
   "module": "dist/vue3-composition-echarts.esm.js",
@@ -26,5 +26,9 @@
     "rollup-plugin-terser": "^6.1.0",
     "tslib": "^2.0.0",
     "typescript": "^3.9.5"
-  }
+  },
+  "files": [
+    "src/*",
+    "dist/*"
+  ]
 }
