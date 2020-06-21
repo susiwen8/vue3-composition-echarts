@@ -1,6 +1,6 @@
 {
   "name": "vue3-composition-echarts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Vue3 composition API for ECharts",
   "main": "dist/vue3-composition-echarts.esm.js",
   "module": "dist/vue3-composition-echarts.esm.js",
@@ -30,5 +30,9 @@
   "files": [
     "src/*",
     "dist/*"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/susiwen8/vue3-echarts.git"
+  }
 }
