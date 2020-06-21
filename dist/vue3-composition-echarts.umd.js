@@ -6,10 +6,10 @@
 
     echarts = echarts && Object.prototype.hasOwnProperty.call(echarts, 'default') ? echarts['default'] : echarts;
 
-    function useECharts(props, el) {
+    function useECharts(props, el, theme, opts) {
         var chartProxy;
         vue.onMounted(function () {
-            var chart = echarts.init(document.getElementById(el));
+            var chart = echarts.init(document.getElementById(el), theme, opts);
             chart.setOption(props.option);
             chartProxy = new Proxy(chart, {
                 get: function (target, property) {
@@ -42,8 +42,25 @@
         vue.watch(function () { return props.option; }, function (newOption) {
             manipulateChart('setOption', newOption);
         });
+        function echartsGraphicMethods(method) {
+            var _a;
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            return (_a = echarts.graphic)[method].apply(_a, args);
+        }
+        function echartsMethods(method) {
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            return echarts[method].apply(echarts, args);
+        }
         return {
-            manipulateChart: manipulateChart
+            manipulateChart: manipulateChart,
+            echartsMethods: echartsMethods,
+            echartsGraphicMethods: echartsGraphicMethods
         };
     }
 
