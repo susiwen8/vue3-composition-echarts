@@ -33,6 +33,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/susiwen8/vue3-echarts.git"
+    "url": "https://github.com/susiwen8/vue3-composition-echarts.git"
   }
 }
